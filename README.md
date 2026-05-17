@@ -1,4 +1,4 @@
-# Rollenaufteilung und Regel
+# Rollenaufteilung und Archtektur
 
 ## Person A — Datei & Graphaufbau
 
