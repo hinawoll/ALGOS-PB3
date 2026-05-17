@@ -94,7 +94,6 @@ void runTests();
 
 ## 1. Datenstruktur
 
-Für C empfehle ich:
 
 ```c
 typedef struct Edge {
