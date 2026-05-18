@@ -1,0 +1,35 @@
+# Build-Ausgaben
+bin/
+obj/
+build/
+*.o
+*.exe
+*.out
+*.a
+*.so
+
+# Code::Blocks Projektdateien (teils optional!)
+*.layout
+*.depend
+*.cbp
+*.bak
+*.save
+
+# Debug/Release Ordner (falls automatisch erstellt)
+Debug/
+Release/
+
+# Autosave / temporäre Dateien
+*~
+*.swp
+*.tmp
+
+# Windows (falls relevant)
+Thumbs.db
+Desktop.ini
+
+# CLion / JetBrains
+.idea/
+cmake-build-*/
+treecheck
+main
