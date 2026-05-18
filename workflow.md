@@ -27,7 +27,7 @@ git commit -m "Beschreibung der Änderungen"
 ### 5. Änderungen pushen
 
 ```bash
-git push
+git push -u origin branchname
 ```
 
 ### 6. Vor dem Pull Request erneut synchronisieren

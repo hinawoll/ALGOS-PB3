@@ -18,15 +18,23 @@
 * `fileio.c`
 * `fileio.h`
 
-### Funktionen
+### Funktionen in graph.h
 
 ```c id="o59p04"
-Graph* createGraph();
-Node* addNode(Graph* graph, char* stationName);
-void addEdge(Graph* graph, char* from, char* to, int cost, char* line);
-Node* findNode(Graph* graph, char* stationName);
+Graph* createGraph(int capacity);
+void freeGraph(Graph* graph);
+Node* findNode(Graph* graph, const char* stationName);
+Node* addNode(Graph* graph, const char* stationName);
+void addEdge(Graph* graph, int from, int to, int cost, const char* line);
 
-void readGraphFile(char* filename, Graph* graph);
+//zum Debugging
+void printGraph(Graph* graph);
+```
+
+### Funktionen in fileio.h
+
+```c id="o59p04"
+Graph* readGraphFile(const char* filename);
 ```
 
 ---
@@ -47,13 +55,27 @@ void readGraphFile(char* filename, Graph* graph);
 * `dijkstra.c`
 * `dijkstra.h`
 
-### Funktionen
+### Funktionen (Beispiel)
 
 ```c id="9j50fz"
-void dijkstra(Graph* graph, char* start, char* target);
-Node* getShortestDistanceNode(Graph* graph);
-void updateDistances(Node* current);
-void reconstructPath(Node* target);
+void dijkstra(Graph* graph, int start, int target);
+int getMinDistanceNode(
+    int dist[],
+    int visited[],
+    int nodeCount
+);
+void updateDistances(
+    Graph* graph,
+    int current,
+    int dist[],
+    int prev[],
+    int visited[]
+);
+void reconstructPath(
+    int prev[],
+    int start,
+    int target
+);
 ```
 
 ---
@@ -74,10 +96,9 @@ void reconstructPath(Node* target);
 
 * `output.c`
 * `output.h`
-* `main.c`
-* `test.c`
+* `test.c`(optional)
 
-### Funktionen
+### Funktionen (Beispiel)
 
 ```c id="tklgdc"
 void printPath(Path* path);
@@ -96,15 +117,18 @@ void runTests();
 
 
 ```c
+#define MAX_NAME_LENGTH 100
+#define MAX_LINE_LENGTH 50
+
 typedef struct Edge {
     int to;
     int cost;
-    char line[50];
+    char line[MAX_LINE_LENGTH];
     struct Edge* next;
 } Edge;
 
 typedef struct Node {
-    char name[100];
+    char name[MAX_NAME_LENGTH];
     Edge* edges;
 } Node;
 
@@ -153,14 +177,3 @@ A -> B Kosten 3
 B -> A Kosten 3
 ```
 
-## 4. Modulaufteilung
-
-Zum Beispiel:
-
-```text
-graph.h / graph.c
-parser.h / parser.c
-dijkstra.h / dijkstra.c
-output.h / output.c
-main.c
-```
