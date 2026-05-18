@@ -1,6 +1,6 @@
 # Rollenaufteilung und Archtektur
 
-## Person A — Datei & Graphaufbau
+## Hina — Datei & Graphaufbau
 
 ### Aufgaben
 
@@ -31,7 +31,7 @@ void readGraphFile(char* filename, Graph* graph);
 
 ---
 
-## Person B — Shortest-Path-Algorithmus
+## Sophia — Shortest-Path-Algorithmus
 
 ### Aufgaben
 
@@ -58,7 +58,7 @@ void reconstructPath(Node* target);
 
 ---
 
-## Person C — Linienlogik, Output & Tests
+## Michael — Linienlogik, Output & Tests
 
 ### Aufgaben
 
