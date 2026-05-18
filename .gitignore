@@ -33,3 +33,5 @@ Desktop.ini
 cmake-build-*/
 treecheck
 main
+CMakeLists.txt
+.DS_Store
