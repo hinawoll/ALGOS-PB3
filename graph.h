@@ -33,6 +33,8 @@ Node* addNode(Graph* graph, const char* stationName);
 
 void addEdge(Graph* graph, int from, int to, int cost, const char* line);
 
+int getNodeIndex(Graph* graph, const char* stationName);
+
 
 //zum Debugging
 void printGraph(Graph* graph);

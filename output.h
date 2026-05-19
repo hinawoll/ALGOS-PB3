@@ -1,0 +1,4 @@
+#ifndef ALGOS_PB3_OUTPUT_H
+#define ALGOS_PB3_OUTPUT_H
+
+#endif //ALGOS_PB3_OUTPUT_H
