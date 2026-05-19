@@ -176,4 +176,3 @@ dann speichert ihr:
 A -> B Kosten 3
 B -> A Kosten 3
 ```
-
