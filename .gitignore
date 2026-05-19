@@ -31,7 +31,7 @@ Desktop.ini
 # CLion / JetBrains
 .idea/
 cmake-build-*/
-treecheck
+find_path
 main
 CMakeLists.txt
 .DS_Store

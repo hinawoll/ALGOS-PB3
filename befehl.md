@@ -1,6 +1,7 @@
 ## Commands ##
+ 
   ```c
-gcc main.c tree.c avl.c fileio.c search.c -o treecheck
+gcc main.c graph.c fileio.c dijkstra.c output.c -o find_path
   ```
 
 *case1: von Karlsplatz bis Praterstern
