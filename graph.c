@@ -4,13 +4,18 @@
 
 #include "graph.h"
 
-Graph* createGraph(int capacity) {
+//ein Graph erstellen
+//ohne Knoten, aber mit Speicherplatz für 100 Knoten
+Graph* createGraph(int capacity) {//capacity ist in fileio.c als 100 definiert
     Graph* graph = malloc(sizeof(Graph));
 
     if (graph == NULL) {
         return NULL;
     }
 
+    //Es wird Speicherplatz für 100 Knoten reserviert
+    //nodes zeigt die erste adresse auf
+    //nodes ist ein Array = nodes[0], nodes[1], nodes[2]...
     graph->nodes = malloc(sizeof(Node) * capacity);
 
     if (graph->nodes == NULL) {
@@ -43,6 +48,57 @@ void freeGraph(Graph* graph) {
     free(graph);
 }
 
+
+//einen Knoten ohne kante erstellen
+Node* addNode(Graph* graph, const char* stationName) {
+    if (graph == NULL || stationName == NULL) {
+        return NULL;
+    }
+
+    if (graph->nodeCount >= graph->capacity) {
+        printf("Error: Graph capacity reached.\n");
+        return NULL;
+    }
+
+    Node* node = &graph->nodes[graph->nodeCount];//(wenn nodeCount = 0, node = &graph->nodes[0] )
+
+    //stationName nach node->name kopieren
+    strncpy(node->name, stationName, MAX_NAME_LENGTH - 1);
+    node->name[MAX_NAME_LENGTH - 1] = '\0';//am Ende ist 0
+    node->edges = NULL;
+
+    graph->nodeCount++;
+
+    return node;
+}
+
+//eine Kante erstellen
+void addEdge(Graph* graph, int from, int to, int cost, const char* line) {
+    if (graph == NULL || line == NULL) {
+        return;
+    }
+
+    if (from < 0 || to < 0 || from >= graph->nodeCount || to >= graph->nodeCount) {
+        return;
+    }
+
+    Edge* edge = malloc(sizeof(Edge));
+
+    if (edge == NULL) {
+        return;
+    }
+
+    edge->to = to;
+    edge->cost = cost;
+
+    //line nach edge->line kopieren
+    strncpy(edge->line, line, MAX_LINE_LENGTH - 1);
+    edge->line[MAX_LINE_LENGTH - 1] = '\0';
+
+    edge->next = graph->nodes[from].edges;
+    graph->nodes[from].edges = edge;
+}
+
 Node* findNode(Graph* graph, const char* stationName) {
     if (graph == NULL || stationName == NULL) {
         return NULL;
@@ -57,51 +113,6 @@ Node* findNode(Graph* graph, const char* stationName) {
     return NULL;
 }
 
-Node* addNode(Graph* graph, const char* stationName) {
-    if (graph == NULL || stationName == NULL) {
-        return NULL;
-    }
-
-    if (graph->nodeCount >= graph->capacity) {
-        printf("Error: Graph capacity reached.\n");
-        return NULL;
-    }
-
-    Node* node = &graph->nodes[graph->nodeCount];
-
-    strncpy(node->name, stationName, MAX_NAME_LENGTH - 1);
-    node->name[MAX_NAME_LENGTH - 1] = '\0';
-    node->edges = NULL;
-
-    graph->nodeCount++;
-
-    return node;
-}
-
-void addEdge(Graph* graph, int from, int to, int cost, const char* line) {
-    if (graph == NULL || line == NULL) {
-        return;
-    }
-
-    if (from < 0 || from >= graph->nodeCount || to < 0 || to >= graph->nodeCount) {
-        return;
-    }
-
-    Edge* edge = malloc(sizeof(Edge));
-
-    if (edge == NULL) {
-        return;
-    }
-
-    edge->to = to;
-    edge->cost = cost;
-
-    strncpy(edge->line, line, MAX_LINE_LENGTH - 1);
-    edge->line[MAX_LINE_LENGTH - 1] = '\0';
-
-    edge->next = graph->nodes[from].edges;
-    graph->nodes[from].edges = edge;
-}
 
 int getNodeIndex(Graph* graph, const char* stationName) {
     if (graph == NULL || stationName == NULL) {
@@ -117,7 +128,7 @@ int getNodeIndex(Graph* graph, const char* stationName) {
     return -1;
 }
 
-
+//zum debugging. alle Stationen und alle Verbindungen werden ausgegeben
 void printGraph(Graph* graph) {
     if (graph == NULL) {
         return;
