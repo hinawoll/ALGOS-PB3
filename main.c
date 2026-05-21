@@ -9,14 +9,16 @@
 
 int main(int argc, char* argv[]) {
     if (argc != 4) {
-        printf("Usage: %s filename_graph start ziel\n", argv[0]);
+        printf("Bitte geben Sie so ein: %s filename_graph start ziel\n", argv[0]);
         return 1;
     }
 
-    char* filename = argv[1];
-    char* startName = argv[2];
-    char* targetName = argv[3];
+    char* filename = argv[1];//z.B. wien.txt
+    char* startName = argv[2];//z.B.Karlsplatz
+    char* targetName = argv[3];//z.B.Praterstern
 
+    //ein Graph erstellen
+    //Zeile für Zeile einlesen und in line[] speichen
     Graph* graph = readGraphFile(filename);
 
     if (graph == NULL) {

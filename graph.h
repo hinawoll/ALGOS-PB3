@@ -36,7 +36,7 @@ void addEdge(Graph* graph, int from, int to, int cost, const char* line);
 int getNodeIndex(Graph* graph, const char* stationName);
 
 
-//zum Debugging
+//zum debugging. alle Stationen und alle Verbindungen werden ausgegeben
 void printGraph(Graph* graph);
 
 
