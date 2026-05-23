@@ -176,3 +176,9 @@ dann speichert ihr:
 A -> B Kosten 3
 B -> A Kosten 3
 ```
+
+# Protokoll
+
+```text
+https://docs.google.com/document/d/1-5l_TtAqrJIYQ6lgb9hwpxKRAibjihsc5TESHBjvzhk/edit?tab=t.0
+```
