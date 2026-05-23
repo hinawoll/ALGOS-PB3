@@ -5,17 +5,18 @@
 #include "graph.h"
 
 //ein Graph erstellen
-//ohne Knoten, aber mit Speicherplatz für 100 Knoten
-Graph* createGraph(int capacity) {//capacity ist in fileio.c als 100 definiert
+//ohne Knoten, aber mit Speicherplatz für 1000 Knoten
+Graph* createGraph(int capacity) {//capacity ist in fileio.c als 1000 definiert
     Graph* graph = malloc(sizeof(Graph));
 
     if (graph == NULL) {
         return NULL;
     }
 
-    //Es wird Speicherplatz für 100 Knoten reserviert
-    //nodes zeigt die erste adresse auf
-    //nodes ist ein Array = nodes[0], nodes[1], nodes[2]...
+    //Es wird Speicherplatz für 1000 Knoten reserviert
+    //*nodes zeigt die erste adresse auf
+    //*nodes ist ein Array = nodes[0], nodes[1], nodes[2]
+    //um bei Dijkstra auf die Knoten effektiv zugreifen zu können
     graph->nodes = malloc(sizeof(Node) * capacity);
 
     if (graph->nodes == NULL) {
@@ -105,6 +106,7 @@ Node* findNode(Graph* graph, const char* stationName) {
     }
 
     for (int i = 0; i < graph->nodeCount; i++) {
+        //String vergleichen und wenn zusammenpassen, den Stationsnamen zurückgeben
         if (strcmp(graph->nodes[i].name, stationName) == 0) {
             return &graph->nodes[i];
         }
