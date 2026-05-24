@@ -14,7 +14,11 @@ DijkstraResult dijkstra(Graph* graph, int start, int target)
     result.pathLength = 0;
     result.totalCost = -1;
 
+    //edge cases
     if (graph == NULL || graph->nodeCount == 0) return result;
+    if(start < 0 || target < 0 || start >= graph->nodeCount || target >= graph->nodeCount) return result;
+
+    //initialisierungen
     int dist[graph->nodeCount];
     int visited[graph->nodeCount];
     int prev[graph->nodeCount];
@@ -27,6 +31,8 @@ DijkstraResult dijkstra(Graph* graph, int start, int target)
         visited[i] = 0;
         prev[i] = -1;
     }
+
+    //dijkstra start
     dist[start] = 0;
     while (1)
     {
@@ -41,6 +47,8 @@ DijkstraResult dijkstra(Graph* graph, int start, int target)
         free(path);
         return result;
     }
+
+    //Pfad rekonstruieren und Rückgabe vorbereiten
     int pathLength = reconstructPath(prev, start, target, path);
     result.path = path;
     result.pathLength = pathLength;

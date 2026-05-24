@@ -15,7 +15,7 @@ void printPath(Graph* graph, DijkstraResult dijkstra)
         }
     }
     printf("\n");
-    printf("GesamtFahrzeit: %d", dijkstra.totalCost);
+    printf("GesamtFahrzeit: %d min\n", dijkstra.totalCost);
 
 }
 
@@ -30,10 +30,20 @@ void printLineChanges(Graph* graph, DijkstraResult dijkstra)
         int to = dijkstra.path[i+1];
         Edge* route = searchforEdge(graph, from, to);
 
-
-        if(currentline != NULL && strcmp(currentline, route->line) != 0)
+        if(route == NULL)
         {
-            printf("%s : Linienwechsel von %s auf %s\n", graph->nodes[from].name, currentline, route->line);
+            continue;
+        }
+        if(currentline == NULL)
+        {
+            printf("Linie: %s\n", route->line);
+        }
+        else if(strcmp(currentline, route->line) != 0)
+        {
+            printf("%s : Linienwechsel von %s auf %s\n",
+                   graph->nodes[from].name,
+                   currentline,
+                   route->line);
         }
         currentline = route->line;
 
@@ -48,7 +58,7 @@ Edge* searchforEdge(Graph* graph, int from, int to)
     {
         if(temp->to == to)
         {
-            printf("Linie: %s\n", temp->line);
+            //printf("Linie: %s\n", temp->line); nur Hilfsfunktion ohne Output
             return temp;
         }
 

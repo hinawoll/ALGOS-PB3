@@ -3,9 +3,8 @@
 
 #include "graph.h"
 #include "fileio.h"
-// später:
-// #include "dijkstra.h"
-// #include "output.h"
+#include "dijkstra.h"
+#include "output.h"
 
 int main(int argc, char* argv[]) {
     if (argc != 4) {
@@ -46,19 +45,26 @@ int main(int argc, char* argv[]) {
     printf("Target: %s\n", targetName);
 
     // Nur zum Testen / Debugging:
-    printGraph(graph);
-
-    /*
-    Später kommt hier Dijkstra rein, z.B.:
+    //printGraph(graph);
 
     int startIndex = getNodeIndex(graph, startName);
     int targetIndex = getNodeIndex(graph, targetName);
 
-    dijkstra(graph, startIndex, targetIndex);
-    printPath(graph, startIndex, targetIndex);
-    */
+    DijkstraResult result = dijkstra(graph, startIndex, targetIndex);
 
+    //edge case
+    if (result.path == NULL)
+    {
+        printf("No path found.\n");
+        freeGraph(graph);
+        return 1;
+    }
+
+    //Ergebnis
+    printPath(graph, result);
+    printLineChanges(graph, result);
+
+    free(result.path);
     freeGraph(graph);
-
     return 0;
 }

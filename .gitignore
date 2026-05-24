@@ -32,6 +32,6 @@ Desktop.ini
 .idea/
 cmake-build-*/
 find_path
-main
 CMakeLists.txt
 .DS_Store
+route
