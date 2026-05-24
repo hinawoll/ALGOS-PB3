@@ -1,6 +1,3 @@
-//du kannst die Funktion "getNodeIndex" aus graph.h/.c hier so z.B. verwenden
-// int startIndex = getNodeIndex(graph, startName);
-// int targetIndex = getNodeIndex(graph, targetName);
 #include "dijkstra.h"
 #include <limits.h>
 #include <stdlib.h>
